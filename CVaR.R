@@ -9,7 +9,7 @@ library(doParallel)
 
 
 CVaR=function(riskVector,confidenceVector,pdfFunct,CVaRt,Tlength){
-
+library(fGarch)
 cat("\f")
 print("Setting CVaR parallel configurations up...")
 
