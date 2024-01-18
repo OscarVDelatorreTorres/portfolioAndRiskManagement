@@ -31,7 +31,7 @@ print("Setting CVaR parallel configurations up...")
    
  
     cat("\f")
-    print(paste0("Estimating CVaR at ",confidenceVector[a]*100,"% of confidence..."))
+    print(paste0("Estimating with ",pdfFunct,"pdf CVaR at ",confidenceVector[a]*100,"% of confidence..."))
     
 # CVaR estimation===
     
@@ -56,7 +56,11 @@ print("Setting CVaR parallel configurations up...")
              },
              "ged"={
                nu=1
-               gedVal=qged(pValsSeq,0,1,nu)
+               # q GED estimation:
+               lambda = sqrt(2^(-2/nu) * gamma(1/nu)/gamma(3/nu))
+               q = lambda * (2 * qgamma((abs(2 * pValsSeq - 1)), 1/nu))^(1/nu)
+               gedVal = q * sign(2 * pValsSeq - 1) * 1 + 0
+               
                cvar=mean((gedVal*riskVector[b])*sqrt(CVaRt))          
              }
       )
