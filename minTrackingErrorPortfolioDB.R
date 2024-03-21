@@ -28,5 +28,8 @@ portfolio1=portfolioFrontier(data=as.timeSeries(Returns),spec=portfoliospec)
 
 dbTable=data.frame(Risk=portfolio1@portfolio@portfolio$targetRisk[,2],
                      Return=portfolio1@portfolio@portfolio$targetReturn[,2],
-                     Portfolio=experiment)
+                     Portfolio=experiment,
+                   Ticker="Efficient frontier")
+
+mvportfolio=minvariancePortfolio(data=as.timeSeries(Returns),spec=portfoliospec)
 
