@@ -708,7 +708,7 @@ laplaceDccSGEDGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Gaussian correlation and Gaussian EGARCH:====
 
-gaussianDccGaussianGARCH=function(Returns,portfoliospec){
+gaussianDccGaussianEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -746,7 +746,7 @@ gaussianDccGaussianGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Gaussian correlation and sStudent EGARCH:====
 
-gaussianDccTStudentGARCH=function(Returns,portfoliospec){
+gaussianDccTStudentEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -784,7 +784,7 @@ gaussianDccTStudentGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Gaussian correlation and GED EGARCH:====
 
-gaussianDccGEDGARCH=function(Returns,portfoliospec){
+gaussianDccGEDEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -823,7 +823,7 @@ gaussianDccGEDGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Gaussian correlation and sGaussian EGARCH:====
 
-gaussianDccSGaussianGARCH=function(Returns,portfoliospec){
+gaussianDccSGaussianEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -861,7 +861,7 @@ gaussianDccSGaussianGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Gaussian correlation and sStudent EGARCH:====
 
-gaussianDccSTStudentGARCH=function(Returns,portfoliospec){
+gaussianDccSTStudentEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -899,7 +899,7 @@ gaussianDccSTStudentGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Gaussian correlation and skewed GED EGARCH:====
 
-gaussianDccSGEDGARCH=function(Returns,portfoliospec){
+gaussianDccSGEDEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -938,7 +938,7 @@ gaussianDccSGEDGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Student-T correlation and Gaussian EGARCH:====
 
-stdDccGaussianGARCH=function(Returns,portfoliospec){
+stdDccGaussianEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -976,7 +976,7 @@ stdDccGaussianGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Student-t correlation and sStudent EGARCH:====
 
-stdDccTStudentGARCH=function(Returns,portfoliospec){
+stdDccTStudentEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1014,7 +1014,7 @@ stdDccTStudentGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Student-t correlation and GED EGARCH:====
 
-stdDccGEDGARCH=function(Returns,portfoliospec){
+stdDccGEDEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1053,7 +1053,7 @@ stdDccGEDGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Student-t correlation and sGaussian EGARCH:====
 
-gaussianDccSGaussianGARCH=function(Returns,portfoliospec){
+gaussianDccSGaussianEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1091,7 +1091,7 @@ gaussianDccSGaussianGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Student-t correlation and sStudent EGARCH:====
 
-stdDccSTStudentGARCH=function(Returns,portfoliospec){
+stdDccSTStudentEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1129,7 +1129,7 @@ stdDccSTStudentGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Student-t correlation and skewed GED EGARCH:====
 
-stdDccSGEDGARCH=function(Returns,portfoliospec){
+stdDccSGEDEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1168,7 +1168,7 @@ stdDccSGEDGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA La Place correlation and Gaussian EGARCH:====
 
-laplaceDccGaussianGARCH=function(Returns,portfoliospec){
+laplaceDccGaussianEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1206,7 +1206,7 @@ laplaceDccGaussianGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA La Place correlation and sStudent EGARCH:====
 
-laplaceDccTStudentGARCH=function(Returns,portfoliospec){
+laplaceDccTStudentEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1244,7 +1244,7 @@ laplaceDccTStudentGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA La Place correlation and GED EGARCH:====
 
-laplaceDccGEDGARCH=function(Returns,portfoliospec){
+laplaceDccGEDEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1283,7 +1283,7 @@ laplaceDccGEDGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA La Place correlation and sGaussian EGARCH:====
 
-laplaceDccSGaussianGARCH=function(Returns,portfoliospec){
+laplaceDccSGaussianEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1321,7 +1321,7 @@ laplaceDccSGaussianGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA La Place correlation and sStudent EGARCH:====
 
-laplaceDccSTStudentGARCH=function(Returns,portfoliospec){
+laplaceDccSTStudentEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1359,7 +1359,7 @@ laplaceDccSTStudentGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA La Place correlation and skewed GED EGARCH:====
 
-laplaceDccSGEDGARCH=function(Returns,portfoliospec){
+laplaceDccSGEDEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1397,9 +1397,9 @@ laplaceDccSGEDGARCH=function(Returns,portfoliospec){
 
 # A3 DCC GJRGARCH models====
 
-# DCCGARCH-(0,0)ARMA Gaussian correlation and Gaussian EGJRGARCH:====
+# DCCGARCH-(0,0)ARMA Gaussian correlation and Gaussian GJRGARCH:====
 
-gaussianDccGaussianGARCH=function(Returns,portfoliospec){
+gaussianDccGaussianGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1437,7 +1437,7 @@ gaussianDccGaussianGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Gaussian correlation and sStudent GJRGARCH:====
 
-gaussianDccTStudentGARCH=function(Returns,portfoliospec){
+gaussianDccTStudentGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1475,7 +1475,7 @@ gaussianDccTStudentGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Gaussian correlation and GED GJRGARCH:====
 
-gaussianDccGEDGARCH=function(Returns,portfoliospec){
+gaussianDccGEDGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1514,7 +1514,7 @@ gaussianDccGEDGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Gaussian correlation and sGaussian GJRGARCH:====
 
-gaussianDccSGaussianGARCH=function(Returns,portfoliospec){
+gaussianDccSGaussianGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1552,7 +1552,7 @@ gaussianDccSGaussianGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Gaussian correlation and sStudent GJRGARCH:====
 
-gaussianDccSTStudentGARCH=function(Returns,portfoliospec){
+gaussianDccSTStudentGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1590,7 +1590,7 @@ gaussianDccSTStudentGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Gaussian correlation and skewed GED GJRGARCH:====
 
-gaussianDccSGEDGARCH=function(Returns,portfoliospec){
+gaussianDccSGEDGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1629,7 +1629,7 @@ gaussianDccSGEDGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Student-T correlation and Gaussian GJRGARCH:====
 
-stdDccGaussianGARCH=function(Returns,portfoliospec){
+stdDccGaussianGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1667,7 +1667,7 @@ stdDccGaussianGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Student-t correlation and sStudent GJRGARCH:====
 
-stdDccTStudentGARCH=function(Returns,portfoliospec){
+stdDccTStudentGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1705,7 +1705,7 @@ stdDccTStudentGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Student-t correlation and GED GJRGARCH:====
 
-stdDccGEDGARCH=function(Returns,portfoliospec){
+stdDccGEDGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1744,7 +1744,7 @@ stdDccGEDGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Student-t correlation and sGaussian GJRGARCH:====
 
-gaussianDccSGaussianGARCH=function(Returns,portfoliospec){
+gaussianDccSGaussianGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1782,7 +1782,7 @@ gaussianDccSGaussianGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Student-t correlation and sStudent GJRGARCH:====
 
-stdDccSTStudentGARCH=function(Returns,portfoliospec){
+stdDccSTStudentGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1820,7 +1820,7 @@ stdDccSTStudentGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA Student-t correlation and skewed GED GJRGARCH:====
 
-stdDccSGEDGARCH=function(Returns,portfoliospec){
+stdDccSGEDGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1859,7 +1859,7 @@ stdDccSGEDGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA La Place correlation and Gaussian GJGARCH:====
 
-laplaceDccGaussianGARCH=function(Returns,portfoliospec){
+laplaceDccGaussianGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1897,7 +1897,7 @@ laplaceDccGaussianGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA La Place correlation and sStudent GJRGARCH:====
 
-laplaceDccTStudentGARCH=function(Returns,portfoliospec){
+laplaceDccTStudentGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1935,7 +1935,7 @@ laplaceDccTStudentGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA La Place correlation and GED GJRGARCH:====
 
-laplaceDccGEDGARCH=function(Returns,portfoliospec){
+laplaceDccGEDGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -1974,7 +1974,7 @@ laplaceDccGEDGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA La Place correlation and sGaussian GJRGARCH:====
 
-laplaceDccSGaussianGARCH=function(Returns,portfoliospec){
+laplaceDccSGaussianGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -2012,7 +2012,7 @@ laplaceDccSGaussianGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA La Place correlation and sStudent GJGARCH:====
 
-laplaceDccSTStudentGARCH=function(Returns,portfoliospec){
+laplaceDccSTStudentGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -2050,7 +2050,7 @@ laplaceDccSTStudentGARCH=function(Returns,portfoliospec){
 
 # DCCGARCH-(0,0)ARMA La Place correlation and skewed GED GJRGARCH:====
 
-laplaceDccSGEDGARCH=function(Returns,portfoliospec){
+laplaceDccSGEDGGJRARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -2782,7 +2782,7 @@ laplaceaDccSGEDGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Gaussian correlation and Gaussian EGARCH:====
 
-gaussianaDccGaussianGARCH=function(Returns,portfoliospec){
+gaussianaDccGaussianEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -2820,7 +2820,7 @@ gaussianaDccGaussianGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Gaussian correlation and sStudent EGARCH:====
 
-gaussianaDccTStudentGARCH=function(Returns,portfoliospec){
+gaussianaDccTStudentEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -2858,7 +2858,7 @@ gaussianaDccTStudentGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Gaussian correlation and GED EGARCH:====
 
-gaussianaDccGEDGARCH=function(Returns,portfoliospec){
+gaussianaDccGEDEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -2897,7 +2897,7 @@ gaussianaDccGEDGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Gaussian correlation and sGaussian EGARCH:====
 
-gaussianaDccSGaussianGARCH=function(Returns,portfoliospec){
+gaussianaDccSGaussianEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -2935,7 +2935,7 @@ gaussianaDccSGaussianGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Gaussian correlation and sStudent EGARCH:====
 
-gaussianaDccSTStudentGARCH=function(Returns,portfoliospec){
+gaussianaDccSTStudentEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -2973,7 +2973,7 @@ gaussianaDccSTStudentGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Gaussian correlation and skewed GED EGARCH:====
 
-gaussianaDccSGEDGARCH=function(Returns,portfoliospec){
+gaussianaDccSGEDEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3012,7 +3012,7 @@ gaussianaDccSGEDGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Student-T correlation and Gaussian EGARCH:====
 
-stdaDccGaussianGARCH=function(Returns,portfoliospec){
+stdaDccGaussianEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3050,7 +3050,7 @@ stdaDccGaussianGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Student-t correlation and sStudent EGARCH:====
 
-stdaDccTStudentGARCH=function(Returns,portfoliospec){
+stdaDccTStudentEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3088,7 +3088,7 @@ stdaDccTStudentGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Student-t correlation and GED EGARCH:====
 
-stdaDccGEDGARCH=function(Returns,portfoliospec){
+stdaDccGEDEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3127,7 +3127,7 @@ stdaDccGEDGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Student-t correlation and sGaussian EGARCH:====
 
-gaussianaDccSGaussianGARCH=function(Returns,portfoliospec){
+gaussianaDccSGaussianEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3165,7 +3165,7 @@ gaussianaDccSGaussianGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Student-t correlation and sStudent EGARCH:====
 
-stdaDccSTStudentGARCH=function(Returns,portfoliospec){
+stdaDccSTStudentEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3203,7 +3203,7 @@ stdaDccSTStudentGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Student-t correlation and skewed GED EGARCH:====
 
-stdaDccSGEDGARCH=function(Returns,portfoliospec){
+stdaDccSGEDEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3242,7 +3242,7 @@ stdaDccSGEDGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA La Place correlation and Gaussian EGARCH:====
 
-laplaceaDccGaussianGARCH=function(Returns,portfoliospec){
+laplaceaDccGaussianEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3280,7 +3280,7 @@ laplaceaDccGaussianGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA La Place correlation and sStudent EGARCH:====
 
-laplaceaDccTStudentGARCH=function(Returns,portfoliospec){
+laplaceaDccTStudentEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3318,7 +3318,7 @@ laplaceaDccTStudentGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA La Place correlation and GED EGARCH:====
 
-laplaceaDccGEDGARCH=function(Returns,portfoliospec){
+laplaceaDccGEDEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3357,7 +3357,7 @@ laplaceaDccGEDGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA La Place correlation and sGaussian EGARCH:====
 
-laplaceaDccSGaussianGARCH=function(Returns,portfoliospec){
+laplaceaDccSGaussianEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3395,7 +3395,7 @@ laplaceaDccSGaussianGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA La Place correlation and sStudent EGARCH:====
 
-laplaceaDccSTStudentGARCH=function(Returns,portfoliospec){
+laplaceaDccSTStudentEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3433,7 +3433,7 @@ laplaceaDccSTStudentGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA La Place correlation and skewed GED EGARCH:====
 
-laplaceaDccSGEDGARCH=function(Returns,portfoliospec){
+laplaceaDccSGEDEGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3471,9 +3471,9 @@ laplaceaDccSGEDGARCH=function(Returns,portfoliospec){
 
 # B3 aDCC GJRGARCH models====
 
-# aDCCGARCH-(0,0)ARMA Gaussian correlation and Gaussian EGJRGARCH:====
+# aDCCGARCH-(0,0)ARMA Gaussian correlation and Gaussian GJRGARCH:====
 
-gaussianaDccGaussianGARCH=function(Returns,portfoliospec){
+gaussianaDccGaussianGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3511,7 +3511,7 @@ gaussianaDccGaussianGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Gaussian correlation and sStudent GJRGARCH:====
 
-gaussianaDccTStudentGARCH=function(Returns,portfoliospec){
+gaussianaDccTStudentGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3549,7 +3549,7 @@ gaussianaDccTStudentGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Gaussian correlation and GED GJRGARCH:====
 
-gaussianaDccGEDGARCH=function(Returns,portfoliospec){
+gaussianaDccGEDGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3588,7 +3588,7 @@ gaussianaDccGEDGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Gaussian correlation and sGaussian GJRGARCH:====
 
-gaussianaDccSGaussianGARCH=function(Returns,portfoliospec){
+gaussianaDccSGaussianGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3626,7 +3626,7 @@ gaussianaDccSGaussianGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Gaussian correlation and sStudent GJRGARCH:====
 
-gaussianaDccSTStudentGARCH=function(Returns,portfoliospec){
+gaussianaDccSTStudentGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3664,7 +3664,7 @@ gaussianaDccSTStudentGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Gaussian correlation and skewed GED GJRGARCH:====
 
-gaussianaDccSGEDGARCH=function(Returns,portfoliospec){
+gaussianaDccSGEDGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3703,7 +3703,7 @@ gaussianaDccSGEDGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Student-T correlation and Gaussian GJRGARCH:====
 
-stdaDccGaussianGARCH=function(Returns,portfoliospec){
+stdaDccGaussianGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3741,7 +3741,7 @@ stdaDccGaussianGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Student-t correlation and sStudent GJRGARCH:====
 
-stdaDccTStudentGARCH=function(Returns,portfoliospec){
+stdaDccTStudentGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3779,7 +3779,7 @@ stdaDccTStudentGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Student-t correlation and GED GJRGARCH:====
 
-stdaDccGEDGARCH=function(Returns,portfoliospec){
+stdaDccGEDGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3818,7 +3818,7 @@ stdaDccGEDGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Student-t correlation and sGaussian GJRGARCH:====
 
-gaussianaDccSGaussianGARCH=function(Returns,portfoliospec){
+gaussianaDccSGaussianGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3856,7 +3856,7 @@ gaussianaDccSGaussianGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Student-t correlation and sStudent GJRGARCH:====
 
-stdaDccSTStudentGARCH=function(Returns,portfoliospec){
+stdaDccSTStudentGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3894,7 +3894,7 @@ stdaDccSTStudentGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA Student-t correlation and skewed GED GJRGARCH:====
 
-stdaDccSGEDGARCH=function(Returns,portfoliospec){
+stdaDccSGEDGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3933,7 +3933,7 @@ stdaDccSGEDGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA La Place correlation and Gaussian GJGARCH:====
 
-laplaceaDccGaussianGARCH=function(Returns,portfoliospec){
+laplaceaDccGaussianGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -3971,7 +3971,7 @@ laplaceaDccGaussianGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA La Place correlation and sStudent GJRGARCH:====
 
-laplaceaDccTStudentGARCH=function(Returns,portfoliospec){
+laplaceaDccTStudentGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -4009,7 +4009,7 @@ laplaceaDccTStudentGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA La Place correlation and GED GJRGARCH:====
 
-laplaceaDccGEDGARCH=function(Returns,portfoliospec){
+laplaceaDccGEDGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -4048,7 +4048,7 @@ laplaceaDccGEDGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA La Place correlation and sGaussian GJRGARCH:====
 
-laplaceaDccSGaussianGARCH=function(Returns,portfoliospec){
+laplaceaDccSGaussianGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -4086,7 +4086,7 @@ laplaceaDccSGaussianGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA La Place correlation and sStudent GJGARCH:====
 
-laplaceaDccSTStudentGARCH=function(Returns,portfoliospec){
+laplaceaDccSTStudentGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -4124,7 +4124,7 @@ laplaceaDccSTStudentGARCH=function(Returns,portfoliospec){
 
 # aDCCGARCH-(0,0)ARMA La Place correlation and skewed GED GJRGARCH:====
 
-laplaceaDccSGEDGARCH=function(Returns,portfoliospec){
+laplaceaDccSGEDGJRGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
   
@@ -4159,3 +4159,4 @@ laplaceaDccSGEDGARCH=function(Returns,portfoliospec){
   list(mu=medias,
        Sigma=covarianza)
 }
+
