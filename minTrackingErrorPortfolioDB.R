@@ -7,29 +7,107 @@
 # The core idea is to estimate, given a Returns data matrix and a preselected
 # portfolio parameters function, the theoretical portfolios and store the results in a database.
 
-minTrackingErrorPortfolio=function(Returns,myestimator,connDB,experiment){
+minTrackingErrorPortfolio=function(Returns,myestimator,experiment){
   
-  outObject=list()
+  # Extracting the asset names from the Return object:
+  assetNames=colnames(Returns)[2:ncol(Returns)]
+  
+  # Portfolio frontiers======  
+  # Conventional portfolio spec:
+  portfoliospec=portfolioSpec(portfolio= list(
+    weights = NULL, targetReturn = NULL,
+    targetRisk = NULL, riskFreeRate = 0, nFrontierPoints = 100,
+    status = NA))
+  
+  setEstimator(portfoliospec)=myestimator
+  
+  # Efficient frontiers estimation:
+  print(paste0("Estimating efficient frontier for portfolio: ",experiment))
+  portfolio1=portfolioFrontier(data=as.timeSeries(Returns),spec=portfoliospec)
+  
+  # Output efficient portfolios values:
+  # Efficient frontier risk
+  dbTable=data.frame(Date=tail(Returns$Date,1),
+                     Value=portfolio1@portfolio@portfolio$targetRisk[,2],
+                     Portfolio=experiment,
+                     Ticker="Efficient frontier risk")
+  # Efficient frontier return
+  dbTable=rbind(dbTable,
+                data.frame(Date=tail(Returns$Date,1),
+                           Value=portfolio1@portfolio@portfolio$targetReturn[,2],
+                           Portfolio=experiment,
+                           Ticker="Efficient frontier return") )
+  # Efficient frontier CVaR
+  dbTable=rbind(dbTable,
+                data.frame(Date=tail(Returns$Date,1),
+                           Value=portfolio1@portfolio@portfolio$targetRisk[,3],
+                           Portfolio=experiment,
+                           Ticker="Efficient frontier CVaR") )
+  # Efficient frontier VaR
+  dbTable=rbind(dbTable,
+                data.frame(Date=tail(Returns$Date,1),
+                           Value=portfolio1@portfolio@portfolio$targetRisk[,4],
+                           Portfolio=experiment,
+                           Ticker="Efficient frontier VaR") )
+  # Efficient frontier covariance
+  dbTable=rbind(dbTable,
+                data.frame(Date=tail(Returns$Date,1),
+                           Value=Return=Value=portfolio1@portfolio@portfolio$targetRisk[,1],
+                           Portfolio=experiment,
+                           Ticker="Efficient frontier covariance") )
+  
+  # Efficient frontier weights:====
+  
+  weightsTable=cbind(data.frame(Date=tail(Returns$Date,1)),
+                     portfolio1@portfolio@portfolio$weights*100,
+                     Portfolio=seq(1:99))
+  
+  colnames(weightsTable)=c("Date",assetNames,"Portfolio")
+  
+  # Minimum variance portfolio estimation:
+  print(paste0("Estimating minumum variance portfolio for portfolio: ",experiment))  
+  mvportfolio=minvariancePortfolio(data=as.timeSeries(Returns),spec=portfoliospec)
+  
+  dbTable=rbind(dbTable,
+                data.frame(Date=tail(Returns$Date,1),
+                           Value=mvportfolio@portfolio@portfolio$targetRisk[2],
+                           Portfolio=experiment,
+                           Ticker="Minimum variance portfolio risk") )
+  
+  dbTable=rbind(dbTable,
+                data.frame(Date=tail(Returns$Date,1),
+                           Value=mvportfolio@portfolio@portfolio$targetReturn[2],
+                           Portfolio=experiment,
+                           Ticker="Minimum variance portfolio return") )
+  
+  dbTable=rbind(dbTable,
+                data.frame(Date=tail(Returns$Date,1),
+                           Value=mvportfolio@portfolio@portfolio$targetRisk[3],
+                           Portfolio=experiment,
+                           Ticker="Minimum variance portfolio CVaR") )
+  
+  dbTable=rbind(dbTable,
+                data.frame(Date=tail(Returns$Date,1),
+                           Value=mvportfolio@portfolio@portfolio$targetRisk[4],
+                           Portfolio=experiment,
+                           Ticker="Minimum variance portfolio VaR") )
+  
+  dbTable=rbind(dbTable,
+                data.frame(Date=tail(Returns$Date,1),
+                           Value=mvportfolio@portfolio@portfolio$targetRisk[1],
+                           Portfolio=experiment,
+                           Ticker="Minimum variance portfolio covariance") )
+  # Min variance portfolio weights:
+  weightsTable2=cbind(data.frame(Date=tail(Returns$Date,1)),
+                      as.data.frame(t(mvportfolio@portfolio@portfolio$weights))*100,
+                      data.frame(Portfolio="Minimum variance portfolio")
+  )
+  
+  weightsTable=rbind(weightsTable,weightsTable2)
+  
+# outObject generation and call:====
+  outObject=list(efficientFrontiers=dbTable,
+                 portfolioWeights=weightsTable)
   return(outObject)
 }
-
-
-#Portfolio frontiers======  
-# Conventional portfolio spec:
-portfoliospec=portfolioSpec(portfolio= list(
-  weights = NULL, targetReturn = NULL,
-  targetRisk = NULL, riskFreeRate = 0, nFrontierPoints = 100,
-  status = NA))
-
-setEstimator(portfoliospec)=myestimator
-
-# Efficient frontiers estimation
-portfolio1=portfolioFrontier(data=as.timeSeries(Returns),spec=portfoliospec)
-
-dbTable=data.frame(Risk=portfolio1@portfolio@portfolio$targetRisk[,2],
-                     Return=portfolio1@portfolio@portfolio$targetReturn[,2],
-                     Portfolio=experiment,
-                   Ticker="Efficient frontier")
-
-mvportfolio=minvariancePortfolio(data=as.timeSeries(Returns),spec=portfoliospec)
 

@@ -5,6 +5,10 @@
 # in the setEstimator() fPortfolio function.
 # setEstimator(portfoliospec2)=myestimator
 
+# Version control:
+# V 1.0: Oscar e la Torre-Torres (original script)
+
+# Required libraries upload or instalation:
 if (!require(fPortfolio)) {install.packages('fPortfolio')
   library(fPortfolio)} else {library(fPortfolio)}
 if (!require(rmgarch)) {install.packages('rmgarch')
@@ -13,6 +17,18 @@ if (!require(tseries)) {install.packages('tseries')
   library(tseries)} else {library(tseries)}
 if (!require(xts)) {install.packages('xts')
   library(xts)} else {library(xts)}
+# Time-fixed:====
+
+timeFixedCovariance=function(Returns,portfoliospec){
+  rendimientos=as.data.frame(Returns)
+  
+  covarianza=as.matrix(cov(rendimientos))
+  medias=as.matrix(colMeans(rendimientos))
+  
+  list(mu=medias,
+       Sigma=covarianza)
+}
+
 # A: symmetric DCC models====
 # A1 DCC symetric GARCH models====
 
@@ -35,7 +51,6 @@ gaussianDccGaussianGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and Gaussian ARMA(0,0) GARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -73,7 +88,6 @@ gaussianDccTStudentGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and Student-t ARMA(0,0) GARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -111,7 +125,6 @@ gaussianDccGEDGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and GED ARMA(0,0) GARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -150,7 +163,6 @@ gaussianDccSGaussianGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed Gaussian ARMA(0,0) GARCH with Gaussian DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -188,7 +200,6 @@ gaussianDccSTStudentGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed Student-t ARMA(0,0) GARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -226,7 +237,6 @@ gaussianDccSGEDGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed GED ARMA(0,0) GARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -265,7 +275,6 @@ stdDccGaussianGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and Gaussian ARMA(0,0) GARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -303,7 +312,6 @@ stdDccTStudentGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and Student-t ARMA(0,0) GARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -341,7 +349,6 @@ stdDccGEDGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and GED ARMA(0,0) GARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -380,7 +387,6 @@ gaussianDccSGaussianGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed Gaussian ARMA(0,0) GARCH with Gaussian DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -418,7 +424,7 @@ stdDccSTStudentGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
+
   print("Estimating Student-t correlation and skewed Student-t ARMA(0,0) GARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -456,7 +462,6 @@ stdDccSGEDGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed GED ARMA(0,0) GARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -495,7 +500,7 @@ laplaceDccGaussianGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
+
   print("Estimating La Place correlation and Gaussian ARMA(0,0) GARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -533,7 +538,6 @@ laplaceDccTStudentGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and Student-t ARMA(0,0) GARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -571,7 +575,6 @@ laplaceDccGEDGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and GED ARMA(0,0) GARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -610,7 +613,6 @@ laplaceDccSGaussianGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed Gaussian ARMA(0,0) GARCH with Gaussian DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -648,7 +650,6 @@ laplaceDccSTStudentGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed Student-t ARMA(0,0) GARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -686,7 +687,6 @@ laplaceDccSGEDGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed GED ARMA(0,0) GARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -726,7 +726,6 @@ gaussianDccGaussianEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and Gaussian ARMA(0,0) EGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -764,7 +763,6 @@ gaussianDccTStudentEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and Student-t ARMA(0,0) EGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -802,7 +800,6 @@ gaussianDccGEDEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and GED ARMA(0,0) EGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -841,7 +838,6 @@ gaussianDccSGaussianEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed Gaussian ARMA(0,0) EGARCH with Gaussian DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -879,7 +875,6 @@ gaussianDccSTStudentEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed Student-t ARMA(0,0) EGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -917,7 +912,6 @@ gaussianDccSGEDEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed GED ARMA(0,0) EGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -956,7 +950,6 @@ stdDccGaussianEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and Gaussian ARMA(0,0) EGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -994,7 +987,6 @@ stdDccTStudentEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and Student-t ARMA(0,0) EGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1032,7 +1024,6 @@ stdDccGEDEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and GED ARMA(0,0) EGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1071,7 +1062,6 @@ gaussianDccSGaussianEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed Gaussian ARMA(0,0) EGARCH with Gaussian DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1109,7 +1099,6 @@ stdDccSTStudentEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed Student-t ARMA(0,0) EGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1147,7 +1136,6 @@ stdDccSGEDEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed GED ARMA(0,0) EGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1186,7 +1174,6 @@ laplaceDccGaussianEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and Gaussian ARMA(0,0) EGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1224,7 +1211,6 @@ laplaceDccTStudentEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and Student-t ARMA(0,0) EGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1262,7 +1248,6 @@ laplaceDccGEDEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and GED ARMA(0,0) EGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1301,7 +1286,6 @@ laplaceDccSGaussianEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed Gaussian ARMA(0,0) EGARCH with Gaussian DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1339,7 +1323,6 @@ laplaceDccSTStudentEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed Student-t ARMA(0,0) EGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1377,7 +1360,6 @@ laplaceDccSGEDEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed GED ARMA(0,0) EGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1417,7 +1399,6 @@ gaussianDccGaussianGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and Gaussian ARMA(0,0) GJRGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1455,7 +1436,6 @@ gaussianDccTStudentGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and Student-t ARMA(0,0) gjrGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1493,7 +1473,6 @@ gaussianDccGEDGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and GED ARMA(0,0) GJRGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1532,7 +1511,6 @@ gaussianDccSGaussianGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed Gaussian ARMA(0,0) GJRGARCH with Gaussian DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1570,7 +1548,6 @@ gaussianDccSTStudentGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed Student-t ARMA(0,0) GJRGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1608,7 +1585,6 @@ gaussianDccSGEDGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="DCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed GED ARMA(0,0) GJRGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1647,7 +1623,6 @@ stdDccGaussianGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and Gaussian ARMA(0,0) GJRGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1685,7 +1660,6 @@ stdDccTStudentGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and Student-t ARMA(0,0) GJRGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1723,7 +1697,6 @@ stdDccGEDGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and GED ARMA(0,0) GJRGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1762,7 +1735,6 @@ gaussianDccSGaussianGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed Gaussian ARMA(0,0) GJRGARCH with Gaussian DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1800,7 +1772,6 @@ stdDccSTStudentGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed Student-t ARMA(0,0) GJRGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1838,7 +1809,6 @@ stdDccSGEDGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="DCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed GED ARMA(0,0) GJRGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1877,7 +1847,6 @@ laplaceDccGaussianGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and Gaussian ARMA(0,0) GJRGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1915,7 +1884,6 @@ laplaceDccTStudentGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and Student-t ARMA(0,0) GJRGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1953,7 +1921,6 @@ laplaceDccGEDGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and GED ARMA(0,0) GJRGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -1992,7 +1959,6 @@ laplaceDccSGaussianGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed Gaussian ARMA(0,0) GJRGARCH with Gaussian DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2030,7 +1996,6 @@ laplaceDccSTStudentGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed Student-t ARMA(0,0) GJRGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2068,7 +2033,6 @@ laplaceDccSGEDGGJRARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="DCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed GED ARMA(0,0) GJRGARCH DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2109,7 +2073,6 @@ gaussianaDccGaussianGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and Gaussian ARMA(0,0) GARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2147,7 +2110,6 @@ gaussianaDccTStudentGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and Student-t ARMA(0,0) GARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2185,7 +2147,6 @@ gaussianaDccGEDGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and GED ARMA(0,0) GARCH asymmetricDCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2224,7 +2185,6 @@ gaussianaDccSGaussianGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed Gaussian ARMA(0,0) GARCH with Gaussian asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2262,7 +2222,6 @@ gaussianaDccSTStudentGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed Student-t ARMA(0,0) GARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2300,7 +2259,6 @@ gaussianaDccSGEDGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed GED ARMA(0,0) GARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2339,7 +2297,6 @@ stdaDccGaussianGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and Gaussian ARMA(0,0) GARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2377,7 +2334,6 @@ stdaDccTStudentGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and Student-t ARMA(0,0) GARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2415,7 +2371,6 @@ stdaDccGEDGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and GED ARMA(0,0) GARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2454,7 +2409,6 @@ gaussianaDccSGaussianGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed Gaussian ARMA(0,0) GARCH with Gaussian asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2492,7 +2446,6 @@ stdaDccSTStudentGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed Student-t ARMA(0,0) GARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2530,7 +2483,6 @@ stdaDccSGEDGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed GED ARMA(0,0) GARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2569,7 +2521,6 @@ laplaceaDccGaussianGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and Gaussian ARMA(0,0) GARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2607,7 +2558,6 @@ laplaceaDccTStudentGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and Student-t ARMA(0,0) GARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2645,7 +2595,6 @@ laplaceaDccGEDGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and GED ARMA(0,0) GARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2684,7 +2633,6 @@ laplaceaDccSGaussianGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed Gaussian ARMA(0,0) GARCH with Gaussian asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2722,7 +2670,6 @@ laplaceaDccSTStudentGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed Student-t ARMA(0,0) GARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2760,7 +2707,6 @@ laplaceaDccSGEDGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed GED ARMA(0,0) GARCH DCC-GARCH asymmetric covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2800,7 +2746,6 @@ gaussianaDccGaussianEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and Gaussian ARMA(0,0) EGARCH DCC-GARCH asymmetric covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2838,7 +2783,6 @@ gaussianaDccTStudentEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and Student-t ARMA(0,0) EGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2876,7 +2820,6 @@ gaussianaDccGEDEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and GED ARMA(0,0) EGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2915,7 +2858,6 @@ gaussianaDccSGaussianEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed Gaussian ARMA(0,0) EGARCH with Gaussian asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2953,7 +2895,6 @@ gaussianaDccSTStudentEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed Student-t ARMA(0,0) EGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -2991,7 +2932,6 @@ gaussianaDccSGEDEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed GED ARMA(0,0) EGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3030,7 +2970,6 @@ stdaDccGaussianEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and Gaussian ARMA(0,0) EGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3068,7 +3007,6 @@ stdaDccTStudentEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and Student-t ARMA(0,0) EGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3106,7 +3044,6 @@ stdaDccGEDEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and GED ARMA(0,0) EGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3145,7 +3082,6 @@ gaussianaDccSGaussianEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed Gaussian ARMA(0,0) EGARCH with Gaussian asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3183,7 +3119,6 @@ stdaDccSTStudentEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed Student-t ARMA(0,0) EGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3221,7 +3156,6 @@ stdaDccSGEDEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed GED ARMA(0,0) EGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3260,7 +3194,6 @@ laplaceaDccGaussianEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and Gaussian ARMA(0,0) EGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3298,7 +3231,6 @@ laplaceaDccTStudentEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and Student-t ARMA(0,0) EGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3336,7 +3268,6 @@ laplaceaDccGEDEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and GED ARMA(0,0) EGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3375,7 +3306,6 @@ laplaceaDccSGaussianEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed Gaussian ARMA(0,0) EGARCH with Gaussian asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3413,7 +3343,6 @@ laplaceaDccSTStudentEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed Student-t ARMA(0,0) EGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3451,7 +3380,6 @@ laplaceaDccSGEDEGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed GED ARMA(0,0) EGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3491,7 +3419,6 @@ gaussianaDccGaussianGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and Gaussian ARMA(0,0) GJRGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3529,7 +3456,6 @@ gaussianaDccTStudentGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and Student-t ARMA(0,0) gjrGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3567,7 +3493,6 @@ gaussianaDccGEDGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and GED ARMA(0,0) GJRGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3606,7 +3531,6 @@ gaussianaDccSGaussianGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed Gaussian ARMA(0,0) GJRGARCH with Gaussian asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3644,7 +3568,6 @@ gaussianaDccSTStudentGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed Student-t ARMA(0,0) GJRGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3682,7 +3605,6 @@ gaussianaDccSGEDGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvnorm",model="aDCC")
-  cat("\f")
   print("Estimating Gaussian correlation and skewed GED ARMA(0,0) GJRGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3721,7 +3643,6 @@ stdaDccGaussianGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and Gaussian ARMA(0,0) GJRGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3759,7 +3680,6 @@ stdaDccTStudentGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and Student-t ARMA(0,0) GJRGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3797,7 +3717,6 @@ stdaDccGEDGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and GED ARMA(0,0) GJRGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3836,7 +3755,6 @@ gaussianaDccSGaussianGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed Gaussian ARMA(0,0) GJRGARCH with Gaussian asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3874,7 +3792,6 @@ stdaDccSTStudentGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed Student-t ARMA(0,0) GJRGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3912,7 +3829,6 @@ stdaDccSGEDGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvt",model="aDCC")
-  cat("\f")
   print("Estimating Student-t correlation and skewed GED ARMA(0,0) GJRGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3951,7 +3867,6 @@ laplaceaDccGaussianGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and Gaussian ARMA(0,0) GJRGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -3989,7 +3904,6 @@ laplaceaDccTStudentGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and Student-t ARMA(0,0) GJRGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -4027,7 +3941,6 @@ laplaceaDccGEDGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and GED ARMA(0,0) GJRGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -4066,7 +3979,6 @@ laplaceaDccSGaussianGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed Gaussian ARMA(0,0) GJRGARCH with Gaussian asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -4104,7 +4016,6 @@ laplaceaDccSTStudentGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
   print("Estimating La Place correlation and skewed Student-t ARMA(0,0) GJRGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
@@ -4142,7 +4053,7 @@ laplaceaDccSGEDGJRGARCH=function(Returns,portfoliospec){
   # turn multispec into a DCC spec
   dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
                       distribution = "mvlaplace",model="aDCC")
-  cat("\f")
+
   print("Estimating La Place correlation and skewed GED ARMA(0,0) GJRGARCH asymmetric DCC-GARCH covariance matrix...")
   # fit the DCC spec to returns
   dcc_fit <- dccfit(dcc_spec, rendimientos)
