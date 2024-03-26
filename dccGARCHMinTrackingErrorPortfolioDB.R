@@ -7,7 +7,15 @@
 # The core idea is to estimate, given a Returns data matrix and a preselected
 # portfolio parameters function, the theoretical portfolios and store the results in a database.
 
-minTrackingErrorPortfolio=function(Returns,myestimator,experiment){
+dccGARCHMinTrackingErrorPortfolio=function(Returns,garchPortParams){
+  
+  armaOrder=garchPortParams$armaOrder
+  garchModel=garchPortParams$garchModel
+  garchLLF=garchPortParams$garchLLF
+  garchOrder=garchPortParams$garchOrder
+  varOrder=garchPortParams$varOrder
+  dccPdf=garchPortParams$dccPdf
+  dccModel=garchPortParams$dccModel
   
   # Extracting the asset names from the Return object:
   assetNames=colnames(Returns)[2:ncol(Returns)]
@@ -19,7 +27,7 @@ minTrackingErrorPortfolio=function(Returns,myestimator,experiment){
     targetRisk = NULL, riskFreeRate = 0, nFrontierPoints = 100,
     status = NA))
   
-  setEstimator(portfoliospec)=myestimator
+  setEstimator(portfoliospec)=dccGARCH
   
   # Efficient frontiers estimation:
   print(paste0("Estimating efficient frontier for portfolio: ",experiment))
