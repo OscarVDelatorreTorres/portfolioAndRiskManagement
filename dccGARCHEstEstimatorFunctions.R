@@ -43,7 +43,7 @@ gaussianDccGaussianGARCH=function(Returns,portfoliospec){
   garch_spec <- ugarchspec(
     variance.model=list(model="sGARCH", garchOrder=c(1, 1)),
     mean.model=list(armaOrder=c(0, 0), include.mean=TRUE),
-    distribution.model="norm")
+    distribution.model=garchPDF)
   
   # create multispec--a set of GARCH(1,1) specifications on each series
   ms <- multispec(replicate(ncol(rendimientos), garch_spec))
