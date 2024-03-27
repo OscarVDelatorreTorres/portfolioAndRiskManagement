@@ -7,7 +7,7 @@
 # The core idea is to estimate, given a Returns data matrix and a preselected
 # portfolio parameters function, the theoretical portfolios and store the results in a database.
 
-dccGARCHMinTrackingzErrorPortfolio=function(Returns,garchPortParams){
+dccGARCHMinTrackingErrorPortfolio=function(Returns,garchPortParams){
   
   armaOrder=garchPortParams$armaOrder
   garchModel=garchPortParams$garchModel

@@ -50,41 +50,53 @@ timeFixedCovariance=function(Returns,portfoliospec){
 dccGARCH=function(Returns,portfoliospec){
   
   rendimientos=as.data.frame(Returns)
-
+  eval(parse(text=paste0("GARCHorder=",garchPortParams$garchOrder)))
+  eval(parse(text=paste0("ARMAorder=",garchPortParams$armaOrder)))
+  print(paste0("GARCHorder:",garchPortParams$varOrder))
   #---
   # GARCH(1,1) Specification
   garch_spec <- ugarchspec(
-    variance.model=list(model=garchModel, garchOrder=garchOrder),
-    mean.model=list(armaOrder=armaOrder, include.mean=TRUE),
-    distribution.model=garchLLF)
+    variance.model=list(model=garchPortParams$garchModel, 
+                        garchOrder=GARCHorder),
+    mean.model=list(armaOrder=ARMAorder, include.mean=TRUE),
+    distribution.model=garchPortParams$garchLLF)
   
   # create multispec--a set of GARCH(1,1) specifications on each series
   ms <- multispec(replicate(ncol(rendimientos), garch_spec))
   
   # turn multispec into a DCC spec
   
-  if (varOrder>0){
+  if (as.numeric(garchPortParams$varOrder)>0){
   
-    dcc_spec <- dccspec(ms, VAR = TRUE, robust = TRUE, lag = 1, lag.max = NULL,
-                        distribution = dccPdf,model=dccModel)
+    dcc_spec <- dccspec(ms, VAR = TRUE, robust = TRUE, 
+                        lag = garchPortParams$varOrder, lag.max = NULL,
+                        distribution = garchPortParams$dccPdf,
+                        model=garchPortParams$dccModel)
 
-    dccCorrelModel=paste0("Estimating ",dccPdf," ",dccModel," correlation with",
-                          " VARMA (",varOrder,",",varOrder,")-",
-                          garchLLF," ",garchModel,
-                          " (",paste(as.character(garchOrder),collapse=","),") ",
+    dccCorrelModel=paste0("Estimating ",garchPortParams$dccPdf," ",
+                          garchPortParams$dccModel," correlation with",
+                          " VARMA (",garchPortParams$varOrder,",",
+                          garchPortParams$varOrder,")-",
+                          garchPortParams$garchLLF," ",
+                          garchPortParams$garchModel,
+                          " (",paste(as.character(GARCHorder),collapse=","),") ",
                           "covariance matrix...")   
     
   } else {
  
-    dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, lag = 1, lag.max = NULL,
-                        distribution = dccPdf,model=dccModel)
+    dcc_spec <- dccspec(ms, VAR = FALSE, robust = TRUE, 
+                        lag = 1, lag.max = NULL,
+                        distribution = garchPortParams$dccPdf,
+                        model=garchPortParams$dccModel)
     
-    dccCorrelModel=paste0("Estimating ",dccPdf," ",dccModel," correlation with",
-                          " ARMA (",paste(as.character(armaOrder),collapse=","),
-                          ")-",
-                          garchLLF," ",garchModel,
-                          " (",paste(as.character(garchOrder),collapse=","),") ",
-                          "covariance matrix...")    
+    dccCorrelModel=paste0("Estimating ",garchPortParams$dccPdf," ",
+                          garchPortParams$dccModel," correlation with",
+                          " ARMA (",garchPortParams$varOrder,",",
+                          garchPortParams$varOrder,")-",
+                          garchPortParams$garchLLF," ",
+                          garchPortParams$garchModel,
+                          " (",paste(as.character(GARCHorder),collapse=","),") ",
+                          "covariance matrix...")     
     
   }
   
