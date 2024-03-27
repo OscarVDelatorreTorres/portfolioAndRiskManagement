@@ -68,7 +68,7 @@ gaussianDccGaussianGARCH=function(Returns,portfoliospec){
        Sigma=covarianza)
 }
 
-# DCCGARCH-(0,0)ARMA Gaussian correlation and sStudent GARCH:====
+# DCCGARCH-(0,0)ARMA Gaussian correlation and Student GARCH:====
 
 gaussianDccTStudentGARCH=function(Returns,portfoliospec){
   
@@ -217,7 +217,7 @@ gaussianDccSTStudentGARCH=function(Returns,portfoliospec){
        Sigma=covarianza)
 }
 
-# DCCGARCH-(0,0)ARMA Gaussian correlation and skewed GED GARCH:====
+# DCCGARCH-(0,0)ARMA Gaussian correlation and sGED GARCH:====
 
 gaussianDccSGEDGARCH=function(Returns,portfoliospec){
   
@@ -743,7 +743,7 @@ gaussianDccGaussianEGARCH=function(Returns,portfoliospec){
        Sigma=covarianza)
 }
 
-# DCCGARCH-(0,0)ARMA Gaussian correlation and sStudent EGARCH:====
+# DCCGARCH-(0,0)ARMA Gaussian correlation and Student EGARCH:====
 
 gaussianDccTStudentEGARCH=function(Returns,portfoliospec){
   
@@ -892,7 +892,7 @@ gaussianDccSTStudentEGARCH=function(Returns,portfoliospec){
        Sigma=covarianza)
 }
 
-# DCCGARCH-(0,0)ARMA Gaussian correlation and skewed GED EGARCH:====
+# DCCGARCH-(0,0)ARMA Gaussian correlation and sGED EGARCH:====
 
 gaussianDccSGEDEGARCH=function(Returns,portfoliospec){
   
@@ -1416,7 +1416,7 @@ gaussianDccGaussianGJRGARCH=function(Returns,portfoliospec){
        Sigma=covarianza)
 }
 
-# DCCGARCH-(0,0)ARMA Gaussian correlation and sStudent GJRGARCH:====
+# DCCGARCH-(0,0)ARMA Gaussian correlation and Student GJRGARCH:====
 
 gaussianDccTStudentGJRGARCH=function(Returns,portfoliospec){
   
@@ -1453,7 +1453,7 @@ gaussianDccTStudentGJRGARCH=function(Returns,portfoliospec){
        Sigma=covarianza)
 }
 
-# DCCGARCH-(0,0)ARMA Gaussian correlation and GED GJRGARCH:====
+# DCCGARCH-(0,0)ARMA Gaussian correlation and GJRGARCH:====
 
 gaussianDccGEDGJRGARCH=function(Returns,portfoliospec){
   
@@ -1565,7 +1565,7 @@ gaussianDccSTStudentGJRGARCH=function(Returns,portfoliospec){
        Sigma=covarianza)
 }
 
-# DCCGARCH-(0,0)ARMA Gaussian correlation and skewed GED GJRGARCH:====
+# DCCGARCH-(0,0)ARMA Gaussian correlation and sGED GJRGARCH:====
 
 gaussianDccSGEDGJRGARCH=function(Returns,portfoliospec){
   
@@ -1901,7 +1901,7 @@ laplaceDccTStudentGJRGARCH=function(Returns,portfoliospec){
        Sigma=covarianza)
 }
 
-# DCCGARCH-(0,0)ARMA La Place correlation and GED GJRGARCH:====
+# DCCGARCH-(0,0)ARMA La Place correlation and GJRGARCH:====
 
 laplaceDccGEDGJRGARCH=function(Returns,portfoliospec){
   
@@ -2090,7 +2090,7 @@ gaussianaDccGaussianGARCH=function(Returns,portfoliospec){
        Sigma=covarianza)
 }
 
-# aDCCGARCH-(0,0)ARMA Gaussian correlation and sStudent GARCH:====
+# aDCCGARCH-(0,0)ARMA Gaussian correlation and Student GARCH:====
 
 gaussianaDccTStudentGARCH=function(Returns,portfoliospec){
   
@@ -2239,7 +2239,7 @@ gaussianaDccSTStudentGARCH=function(Returns,portfoliospec){
        Sigma=covarianza)
 }
 
-# aDCCGARCH-(0,0)ARMA Gaussian correlation and skewed GED GARCH:====
+# aDCCGARCH-(0,0)ARMA Gaussian correlation and sGED GARCH:====
 
 gaussianaDccSGEDGARCH=function(Returns,portfoliospec){
   
@@ -2763,7 +2763,7 @@ gaussianaDccGaussianEGARCH=function(Returns,portfoliospec){
        Sigma=covarianza)
 }
 
-# aDCCGARCH-(0,0)ARMA Gaussian correlation and sStudent EGARCH:====
+# aDCCGARCH-(0,0)ARMA Gaussian correlation and Student EGARCH:====
 
 gaussianaDccTStudentEGARCH=function(Returns,portfoliospec){
   
@@ -2912,7 +2912,7 @@ gaussianaDccSTStudentEGARCH=function(Returns,portfoliospec){
        Sigma=covarianza)
 }
 
-# aDCCGARCH-(0,0)ARMA Gaussian correlation and skewed GED EGARCH:====
+# aDCCGARCH-(0,0)ARMA Gaussian correlation and sGED EGARCH:====
 
 gaussianaDccSGEDEGARCH=function(Returns,portfoliospec){
   
@@ -3436,7 +3436,7 @@ gaussianaDccGaussianGJRGARCH=function(Returns,portfoliospec){
        Sigma=covarianza)
 }
 
-# aDCCGARCH-(0,0)ARMA Gaussian correlation and sStudent GJRGARCH:====
+# aDCCGARCH-(0,0)ARMA Gaussian correlation and Student GJRGARCH:====
 
 gaussianaDccTStudentGJRGARCH=function(Returns,portfoliospec){
   
@@ -3585,7 +3585,7 @@ gaussianaDccSTStudentGJRGARCH=function(Returns,portfoliospec){
        Sigma=covarianza)
 }
 
-# aDCCGARCH-(0,0)ARMA Gaussian correlation and skewed GED GJRGARCH:====
+# aDCCGARCH-(0,0)ARMA Gaussian correlation and sGED GJRGARCH:====
 
 gaussianaDccSGEDGJRGARCH=function(Returns,portfoliospec){
   
